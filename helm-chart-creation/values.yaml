@@ -1,0 +1,11 @@
+replicaCount: 1
+
+image:
+  repository: repository-address
+  pullPolicy: Always
+
+ContainerRegistryCredentials: registry-credentials
+
+ingress:
+  hosts:
+    frontend: domain-name

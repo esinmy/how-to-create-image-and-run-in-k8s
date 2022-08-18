@@ -1,0 +1,35 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: website-deploy
+  namespace: my-namespace
+spec:
+  replicas: {{ .Values.replicaCount }}
+  selector:
+    matchLabels:
+      app: website
+  template:
+    metadata:
+      labels:
+        app: website
+    spec:
+      containers:
+      - name: website
+        image: "{{ .Values.image.repository }}/hub/my-webserver:latest"
+        imagePullPolicy: {{ .Values.image.pullPolicy }}
+        ports:
+          - containerPort: 80
+      imagePullSecrets:
+      - name: container-registry-credentials
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: website-clusterip-svc
+  namespace: test-namespace
+spec:
+  selector:
+    app: website
+  ports:
+  - port: 80
+    targetPort: 80
