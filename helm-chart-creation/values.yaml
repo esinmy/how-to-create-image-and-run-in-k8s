@@ -1,11 +1,11 @@
 replicaCount: 1
 
 image:
-  repository: repository-address
+  repository: null
   pullPolicy: Always
 
-ContainerRegistryCredentials: registry-credentials
+ContainerRegistryCredentials: null
 
 ingress:
   hosts:
-    frontend: domain-name
+    frontend: null
